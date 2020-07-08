@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/MySQL/test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/a/com/BinTree.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/a/com/BinTreeApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/a/com/BinTreeNode.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/a/dao/DBBean.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/dao/ListSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/dao/StudentDaoImp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/dao/test.java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
