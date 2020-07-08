@@ -12,19 +12,17 @@ import java.util.List;
 public class ReadFile {
     /**
      * 一次性导入全部
-     * @param filename
-     * @throws IOException
      */
     public void insert2(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        String line = null;
+        String line ;
         String sql = "insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) " +
                 "values(?,?,?,?,?,?,?,NOW(),?)";
 
         DBHelper dbHelper = new DBHelper();
-        StringBuffer sb = new StringBuffer("insert into db_student  values");
+        StringBuilder sb = new StringBuilder("insert into db_student  values");
         List<Object> param = new ArrayList<>();
         while (bufferedReader.readLine() != null&& (line = bufferedReader.readLine()).length() !=0){
             sb.append("(?,?,?,?,?,?,?,NOW(),?),");
@@ -36,14 +34,12 @@ public class ReadFile {
 
         }
         dbHelper.update(sb.toString().substring(0,sb.length() - 1) ,param.toArray());
-        System.out.println("导入完成");
+        System.out.println("导入完成 ");
         bufferedReader.close();
     }
 
     /**
      * StudentSystem
-     * @param args
-     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
         ReadFile readFile = new ReadFile();
