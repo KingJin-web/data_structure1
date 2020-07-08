@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ReadFile {
     /**
-     * Ò»´ÎĞÔµ¼ÈëÈ«²¿
+     * ä¸€æ¬¡æ€§å¯¼å…¥å…¨éƒ¨
      * @param filename
      * @throws IOException
      */
@@ -24,9 +24,9 @@ public class ReadFile {
                 "values(?,?,?,?,?,?,?,NOW(),?)";
 
         DBHelper dbHelper = new DBHelper();
-        StringBuffer sb = new StringBuffer("insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) values");
+        StringBuffer sb = new StringBuffer("insert into db_student  values");
         List<Object> param = new ArrayList<>();
-        while ( (line = bufferedReader.readLine()) != null){
+        while (bufferedReader.readLine() != null&& (line = bufferedReader.readLine()).length() !=0){
             sb.append("(?,?,?,?,?,?,?,NOW(),?),");
             String[] arr = line.split("\\s+");
 //            for (String s:arr){
@@ -36,7 +36,18 @@ public class ReadFile {
 
         }
         dbHelper.update(sb.toString().substring(0,sb.length() - 1) ,param.toArray());
-        System.out.println("µ¼ÈëÍê³É");
+        System.out.println("å¯¼å…¥å®Œæˆ");
         bufferedReader.close();
+    }
+
+    /**
+     * StudentSystem
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException {
+        ReadFile readFile = new ReadFile();
+        System.out.println(System.getProperty("user.dir"));
+        readFile.insert2(System.getProperty("user.dir")+"\\b.txt");
     }
 }

@@ -7,79 +7,79 @@ import java.util.ArrayList;
 
 public class Hash {
 
-    //¼ÇÂ¼Ñ§ÉúÈËÊı
+    //è®°å½•å­¦ç”Ÿäººæ•°
     private int sumStudentNum = 0;
-    //¼¯ºÏ·â×°Á´±íĞÎ³É¹şÏ£±í
+    //é›†åˆå°è£…é“¾è¡¨å½¢æˆå“ˆå¸Œè¡¨
     private ArrayList<DoubleLinkList> doubleLinkLists = new ArrayList<DoubleLinkList>();
 
-    //µÃµ½ÒÔĞÕÎª¹Ø¼ü×ÖµÄ¹şÏ£Öµ
+    //å¾—åˆ°ä»¥å§“ä¸ºå…³é”®å­—çš„å“ˆå¸Œå€¼
     public String getHash(String name){
-        //È¡ĞÕÃûµÄµÚÒ»¸ö×ÖÎª¹şÏ£Öµ
+        //å–å§“åçš„ç¬¬ä¸€ä¸ªå­—ä¸ºå“ˆå¸Œå€¼
         Object firstName = name.subSequence(0,1);
         return firstName.toString();
     }
 
-    //´Ó¹şÏ£±íÖĞÕÒµ½ÒªÕÒµÄ¹şÏ£ÖµµÄÁ´±í
+    //ä»å“ˆå¸Œè¡¨ä¸­æ‰¾åˆ°è¦æ‰¾çš„å“ˆå¸Œå€¼çš„é“¾è¡¨
     public Student findHash(String name){
-        //µÃµ½¹şÏ£Öµ
+        //å¾—åˆ°å“ˆå¸Œå€¼
         String firstName = getHash(name);
         //
         for(DoubleLinkList doubleLinkList: doubleLinkLists){
-            //¹şÏ£ÖµÆ¥Åä³É¹¦
+            //å“ˆå¸Œå€¼åŒ¹é…æˆåŠŸ
             if(firstName.equals(doubleLinkList.getFirstName())) {
-                //´Ó´ËÁ´±íÖĞÑ°ÕÒname
+                //ä»æ­¤é“¾è¡¨ä¸­å¯»æ‰¾name
                 if(doubleLinkList.findAStudent(name) != null)
-                //ÕÒµ½·µ»ØStudent
+                //æ‰¾åˆ°è¿”å›Student
                 {
                     return doubleLinkList.findAStudent(name).getObj();
                 }
             }
         }
-        //²éÕÒÊ§°Ü
+        //æŸ¥æ‰¾å¤±è´¥
         return null;
     }
 
-    //Ìí¼Ó
+    //æ·»åŠ 
     public boolean addHash(String firstName, Student student){
-        //½éÖµÅĞ¶Ï¹şÏ£±íÖĞ´æ²»´æÔÚ´Ë¹şÏ£Öµ
+        //ä»‹å€¼åˆ¤æ–­å“ˆå¸Œè¡¨ä¸­å­˜ä¸å­˜åœ¨æ­¤å“ˆå¸Œå€¼
         boolean flag = false;
         for(DoubleLinkList doubleLinkList: doubleLinkLists) {
-            //¹şÏ£±íÖĞÒÑÓĞ´Ë¹şÏ£Öµ
+            //å“ˆå¸Œè¡¨ä¸­å·²æœ‰æ­¤å“ˆå¸Œå€¼
             if (firstName.equals(doubleLinkList.getFirstName())) {
-                //Ö±½ÓÌí¼ÓÔÚ´ËÁ´±íÖĞ
+                //ç›´æ¥æ·»åŠ åœ¨æ­¤é“¾è¡¨ä¸­
                 doubleLinkList.addANode(student);
                 flag = true;
                 break;
             }
 
         }
-        //²»´æÔÚ´Ë¹şÏ£Öµ
+        //ä¸å­˜åœ¨æ­¤å“ˆå¸Œå€¼
         if(flag == false) {
-            //ÔòĞÂ½¨Ò»Á´±í
+            //åˆ™æ–°å»ºä¸€é“¾è¡¨
             doubleLinkLists.add(new DoubleLinkList(firstName, student));
 
         }
-        //ÈËÊı¼ÓÒ»
+        //äººæ•°åŠ ä¸€
         sumStudentNum++;
         return true;
     }
 
-    //É¾³ı
+    //åˆ é™¤
     public String deleteHash(String name){
         String uid = null;
 
-        //ÈôÕÒµ½´ËÈË
+        //è‹¥æ‰¾åˆ°æ­¤äºº
         if(findHash(name) != null){
             String firstName = getHash(name);
             for(DoubleLinkList doubleLinkList: doubleLinkLists){
-                //ÕÒµ½´Ë¹şÏ£Öµ
+                //æ‰¾åˆ°æ­¤å“ˆå¸Œå€¼
                 if(firstName.equals(doubleLinkList.getFirstName())) {
-                    //ÒıÓÃ½áµãÉ¾³ıº¯Êı
+                    //å¼•ç”¨ç»“ç‚¹åˆ é™¤å‡½æ•°
                     uid = doubleLinkList.deleteANode(name);
 
                 }
             }
-            //ÈËÊı¼õÒ»
+            //äººæ•°å‡ä¸€
             sumStudentNum --;
             return uid;
         }
@@ -93,19 +93,19 @@ public class Hash {
         }
     }*/
 
-    //Êä³öËùÓĞĞÅÏ¢--²âÊÔÓÃ
+    //è¾“å‡ºæ‰€æœ‰ä¿¡æ¯--æµ‹è¯•ç”¨
     public void showAHash(){
         for(DoubleLinkList doubleLinkList: doubleLinkLists) {
             doubleLinkList.showDoubleLinkList();
         }
     }
 
-    //·µ»ØÈËÊı
+    //è¿”å›äººæ•°
     public int getSumStudentNum(){
         return sumStudentNum;
     }
 
-    //·µ»Ø¹şÏ£±í
+    //è¿”å›å“ˆå¸Œè¡¨
     public ArrayList<DoubleLinkList> getDoubleLinkLists(){
         return doubleLinkLists;
     }

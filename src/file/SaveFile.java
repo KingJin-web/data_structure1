@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author 12613
- * ±£´æÎÄ¼ş
+ * ä¿å­˜æ–‡ä»¶
  */
 public class SaveFile {
     private void save() throws SQLException {
@@ -21,7 +21,7 @@ public class SaveFile {
         //ArrayList<Student> list = s.selectAllStudent();
         List<Student> list  = studentDao.selectAllStudent();
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("d:\\b.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("b.txt"));
             for (Student s : list) {
                 bw.write(String.valueOf(s));
                 bw.newLine();
