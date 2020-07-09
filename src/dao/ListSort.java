@@ -93,6 +93,11 @@ public class ListSort {
         return true;
     }
 
+    /**
+     * 数组排序
+     * @param s
+     * @param index 排序的第几个元素
+     */
     private void test(String[][] s, int index) {
         for (int j = 0; j < s.length; j++) {
             for (int i = 0; i < s.length - 1; i++) {
@@ -106,6 +111,10 @@ public class ListSort {
         }
     }
 
+    /**
+     * 输出数组
+     * @param s
+     */
     private void display(String[][] s) {
         for (int i = 0; i < s.length; i++) {
             for (int j = 0; j < s[i].length; j++) {
