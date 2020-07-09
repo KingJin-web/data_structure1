@@ -13,6 +13,20 @@ import java.util.List;
  * 读取文件
  */
 public class ReadFile {
+    public void insert1(String filname) throws IOException{
+        FileReader fileReader = new FileReader(filname);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line = null;
+        String sql = "insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) \" +\n" +
+                "                \"values(?,?,?,?,?,?,?,NOW(),?)";
+        DBHelper dbHelper = new DBHelper();
+        while ( (line = bufferedReader.readLine()) != null){
+            String[] arr = line.split("\\s+");
+            dbHelper.update(sql,arr);
+        }
+        bufferedReader.close();
+    }
+
     /**
      * 一次性导入全部
      */
@@ -20,14 +34,14 @@ public class ReadFile {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        String line ;
+        String line = null;
         String sql = "insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) " +
                 "values(?,?,?,?,?,?,?,NOW(),?)";
 
         DBHelper dbHelper = new DBHelper();
         StringBuilder sb = new StringBuilder("insert into db_student  values");
         List<Object> param = new ArrayList<>();
-        while (bufferedReader.readLine() != null&& (line = bufferedReader.readLine()).length() !=0){
+        while ((line = bufferedReader.readLine() )!= null&& line.length() !=0){
             sb.append("(?,?,?,?,?,?,?,NOW(),?),");
             String[] arr = line.split("\\s+");
 //            for (String s:arr){
@@ -46,7 +60,6 @@ public class ReadFile {
      */
     public static void main(String[] args) throws IOException {
         ReadFile readFile = new ReadFile();
-        System.out.println(System.getProperty("user.dir"));
-        readFile.insert2(System.getProperty("user.dir")+"\\b.txt");
+        readFile.insert2("b.txt");
     }
 }

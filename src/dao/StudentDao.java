@@ -44,7 +44,7 @@ public interface StudentDao {
 
 
     /**
-     * 返回按照总成绩降序排序的全部数据
+     *
      * @return 返回一个数组存储所有人的数据
      */
     public ArrayList<Student> selectAllStudent() throws SQLException;
@@ -55,5 +55,14 @@ public interface StudentDao {
      * @return 返回一个学生的成绩相关信息
      */
     public ArrayList<Student> selectStuBySid(String sid) throws SQLException;
+
+    /**
+     * 分页查询
+     * @param a
+     * @param b
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<Student> pagingQuery(int a,int b) throws SQLException;
 
 }
