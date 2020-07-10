@@ -35,12 +35,12 @@ public interface StudentDao {
 
     /**
      * 更新数据库中数据，一次只能更改一项
-     * @param name 姓名
-     * @param property 更改的科目，只能是科目,输入内容可以是：数学，英语，历史，`````````
+     * @param sid 学号
+     * @param property 更改的科目，只能是科目,输入内容可以是：English + history + math + pe + data_structure
      * @param newMark 这门课新的分数
      * @return 返回1：更新成功，0更新失败
      */
-    public int updateStudent(String name,String property,double newMark);
+    public int updateStudent(String sid,String property,double newMark);
 
 
     /**

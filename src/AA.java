@@ -21,7 +21,7 @@ public class AA {
         InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
         BufferedReader br = new BufferedReader(isr);
         String line = null;
-
+        System.out.println("adsdad");
         line = br.readLine();
         return line;
     }

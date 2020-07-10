@@ -56,6 +56,34 @@ public class StudentDaoImp implements StudentDao {
         }
     }
 
+    public Connection openConnection(int a) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            RuntimeException re = new RuntimeException("数据库驱动加载失败!", e);
+            throw re;
+        }
+        String url = "jdbc:mysql://rm-bp1by93uevp3655w7uo.mysql.rds.aliyuncs.com/aaa?useUnicode=true&characterEncoding=UTF-8";
+        // 数据库的地址
+        String user = "student";
+        // 数据的用户
+        String password = "aaaaaaaa";
+        try {
+            if (isAutoCommit) {
+                return DriverManager.getConnection(url, user, password);
+            } else {
+                if (conn == null) {
+                    // 禁止自动提交
+                    conn = DriverManager.getConnection(url, user, password);
+                    conn.setAutoCommit(isAutoCommit);
+                }
+                return conn;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("获取数据库连接失败!", e);
+        }
+    }
+
     @Override
     public ArrayList<Student> selectAllStudent() throws SQLException {
 
@@ -108,7 +136,24 @@ public class StudentDaoImp implements StudentDao {
     }
 
     @Override
-    public int updateStudent(String name, String property, double newMark) {
+    public int updateStudent(String sid, String property, double newMark) {
+        conn = openConnection(1);
+
+        String sql = "UPDATE db_student SET " + property + " = ? WHERE sid = ?";
+        StudentDaoImp studentDaoImp = new StudentDaoImp();
+
+        try {
+            conn = openConnection(1);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDouble(1, newMark);
+            ps.setString(2, sid);
+            ps.executeUpdate();
+            studentDaoImp.changeTotal(sid);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            IOHelper.close(conn);
+        }
         return 0;
     }
 
@@ -117,10 +162,11 @@ public class StudentDaoImp implements StudentDao {
     public ArrayList<Student> selectStuBySid(String sid) throws SQLException {
         try {
 
-
+            conn = openConnection(1);
             String sql = "select * from db_student where sid = ?";
             ArrayList<Student> list1 = new ArrayList();
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, sid);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -147,14 +193,15 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public ArrayList<Student> pagingQuery(int a, int b) throws SQLException {
         Connection conn = openConnection();
-        try{
-            ArrayList<Student> list1 = new ArrayList();
+        ArrayList<Student> list1 = new ArrayList();
+        try {
+
             String sql = "select * from db_student limit ?,?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, a);
             ps.setInt(2, b);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 Student s = new Student();
                 s.setSname(rs.getString("sname"));
                 s.setSid(rs.getString("sid"));
@@ -169,13 +216,59 @@ public class StudentDaoImp implements StudentDao {
                 list1.add(s);
             }
             return list1;
-        }finally {
+
+        } finally {
             IOHelper.close(conn);
         }
-
+//        if (list1.size() == 0){
+//            System.out.println("抱歉查无此人");
+//            return list1;
+//        }else {
+//            return list1;
+//        }
 
 
     }
+//SELECT English + history + math + pe + data_structure AS Total FROM db_student WHERE sid = 0001;
 
+    public double returnTotal(String sid) throws SQLException {
+        double total = 0;
+        try {
+            Connection conn = openConnection();
+            String sql = "SELECT English + history + math + pe + data_structure AS " +
+                    "Total FROM db_student WHERE sid = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, sid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getDouble(1);
+            }
+            return total;
+        } finally {
+            IOHelper.close(conn);
+        }
+    }
+
+    public int changeTotal(String sid) throws SQLException {
+        StudentDaoImp studentDaoImp = new StudentDaoImp();
+        try {
+            Connection conn = openConnection();
+            String sql = "UPDATE db_student SET total_score = ? WHERE sid = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDouble(1, studentDaoImp.returnTotal(sid));
+            ps.setString(2, sid);
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("执行SQL语句失败!", e);
+        } finally {
+            IOHelper.close(conn);
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        StudentDaoImp studentDaoImp = new StudentDaoImp();
+        studentDaoImp.changeTotal("0001");
+    }
 }
 
