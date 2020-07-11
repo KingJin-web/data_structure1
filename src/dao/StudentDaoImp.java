@@ -9,9 +9,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-/**
- * @author 12613
- */
 public class StudentDaoImp implements StudentDao {
 
 
