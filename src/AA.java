@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class AA {
     public static void main(String[] args) throws IOException {
@@ -9,7 +10,7 @@ public class AA {
     public static void save(String x) throws IOException {
         FileOutputStream fos = new FileOutputStream("test.txt");
 
-        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+        OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
 
         osw.write(x);
 
@@ -18,7 +19,7 @@ public class AA {
 
     public static String read() throws IOException {
         FileInputStream fis = new FileInputStream("test.txt");
-        InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);
         String line = null;
         System.out.println("adsdad");

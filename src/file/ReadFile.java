@@ -1,10 +1,14 @@
 package file;
 
 import MySQL.DBHelper;
+import MySQL.IOHelper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +37,7 @@ public class ReadFile {
     public void insert2(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+        deleteTable();
         String line = null;
         String sql = "insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) " +
                 "values(?,?,?,?,?,?,?,NOW(),?)";
@@ -55,6 +59,23 @@ public class ReadFile {
         bufferedReader.close();
     }
 
+    /**
+     * 清空表
+     */
+    public static void deleteTable(){
+        DBHelper db = new DBHelper();
+        Connection conn = db.openConnection();
+        try {
+
+            String sql = "TRUNCATE TABLE db_student";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("执行SQL语句失败!", e);
+        } finally {
+            IOHelper.close(conn);
+        }
+    }
     /**
      * StudentSystem
      */

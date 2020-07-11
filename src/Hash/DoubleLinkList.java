@@ -12,7 +12,7 @@ DoubleLinkList {
     private Node first = null;          //第一个结点
     private Node last = null;           //最后一个结点
     private int size;                   //链表长度
-    private String firstName;           //哈希关键字
+    private final String firstName;           //哈希关键字
 
     //构造函数
     public DoubleLinkList(String firstName, Student student){
@@ -120,9 +120,9 @@ DoubleLinkList {
 
         for(Node n = first; n != null; n = n.next) {
             System.out.println(n.getObj().getSname() + n.getObj().getSid() +"    "+"    "+
-                    String.valueOf(n.getObj().getEnglish()) +"    "+ String.valueOf(n.getObj().getHistory()) +"    "+
-                    String.valueOf(n.getObj().getMath()) +"    "+ String.valueOf(n.getObj().getPe()) +"    "+
-                    String.valueOf(n.getObj().getData_structure() ));
+                    n.getObj().getEnglish() +"    "+ n.getObj().getHistory() +"    "+
+                    n.getObj().getMath() +"    "+ n.getObj().getPe() +"    "+
+                    n.getObj().getData_structure());
         }
     }
 

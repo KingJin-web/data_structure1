@@ -23,15 +23,15 @@ public interface StudentDao {
      * @param data_structure;数据结构
      * @return 1 代表添加成功，0 代表添加失败
      */
-    public int addStudent(String sname, String sid, double english, double history, double math,
-                           double pe, double data_structure,double total_score);
+    int addStudent(String sname, String sid, double english, double history, double math,
+                   double pe, double data_structure, double total_score);
 
     /**
      * 根据学号删除数据库中的学生
      * @param uid 学号
      * @return 返回1：删除成功。返回0删除失败
      */
-    public int deleteStudent(String uid);
+    int deleteStudent(String uid);
 
     /**
      * 更新数据库中数据，一次只能更改一项
@@ -40,21 +40,21 @@ public interface StudentDao {
      * @param newMark 这门课新的分数
      * @return 返回1：更新成功，0更新失败
      */
-    public int updateStudent(String sid,String property,double newMark);
+    int updateStudent(String sid, String property, double newMark);
 
 
     /**
      *
      * @return 返回一个数组存储所有人的数据
      */
-    public ArrayList<Student> selectAllStudent() throws SQLException;
+    ArrayList<Student> selectAllStudent() throws SQLException;
 
     /**
      * 根据学号进行选择
      * @param sid 学号
      * @return 返回一个学生的成绩相关信息
      */
-    public ArrayList<Student> selectStuBySid(String sid) throws SQLException;
+    ArrayList<Student> selectStuBySid(String sid) throws SQLException;
 
     /**
      * 分页查询
@@ -63,6 +63,6 @@ public interface StudentDao {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Student> pagingQuery(int a,int b) throws SQLException;
+    ArrayList<Student> pagingQuery(int a, int b) throws SQLException;
 
 }

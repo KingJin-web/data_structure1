@@ -20,10 +20,10 @@ public class test {
 //        ListSort L = new ListSort();
 //        L.addStudent("张三丰", "0006", 99, 85, 98, 36, 89);
         // 插入学生成绩
-
-//        ListSort l = new ListSort();
-//        l.setUpObjects();
-//        //学生成绩排序（总分排序）
+        System.out.println("aaa");
+        ListSort l = new ListSort();
+        l.setUpObjects();
+        //学生成绩排序（总分排序）
 
 //        l.findStudent("许如愿");
 //        //查找 姓名查找
@@ -44,7 +44,7 @@ public class test {
 //        }else {
 //            System.out.println(list2);
 //        }
-            s.updateStudent("0001","english",86);
+           // s.updateStudent("0001","english",86);
         //成绩的修改
 
 

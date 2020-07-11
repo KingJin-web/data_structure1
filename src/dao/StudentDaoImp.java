@@ -20,7 +20,7 @@ public class StudentDaoImp implements StudentDao {
     // 每次都会通过open方法获取连接
 
     Connection conn = dbHelper.openConnection();
-    private boolean isAutoCommit = true;
+    private final boolean isAutoCommit = true;
 
     /**
      * http://39.107.46.233/

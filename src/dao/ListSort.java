@@ -11,12 +11,12 @@ import java.util.*;
 public class ListSort {
 
     //新建哈希表对象 int [][]a=new int[3][];
-    private Hash studentHash = new Hash();
+    private final Hash studentHash = new Hash();
 
     List<Student> object = stu.selectAllStudent();
     public String[][] objects = new String[object.size()][8];
 
-    private static StudentDaoImp stu = new StudentDaoImp();
+    private static final StudentDaoImp stu = new StudentDaoImp();
 
     public ListSort() throws SQLException {
         int size = stu.selectAllStudent().size();
@@ -102,7 +102,7 @@ public class ListSort {
         for (int j = 0; j < s.length; j++) {
             for (int i = 0; i < s.length - 1; i++) {
                 String[] ss;
-                if (s[i][index].compareTo(s[i + 1][index]) > 0) {
+                if (s[i][index].compareTo(s[i + 1][index]) < 0) {
                     ss = s[i];
                     s[i] = s[i + 1];
                     s[i + 1] = ss;
@@ -133,8 +133,8 @@ public class ListSort {
 
             //测试用输出
             System.out.println(student.getSname() + "    " + student.getSid() + "    " +
-                    String.valueOf(student.getEnglish()) + "    " + String.valueOf(student.getHistory()) + "    " +
-                    String.valueOf(student.getMath()) + "    " + String.valueOf(student.getPe()) + "    " + student.getData_structure()
+                    student.getEnglish() + "    " + student.getHistory() + "    " +
+                    student.getMath() + "    " + student.getPe() + "    " + student.getData_structure()
 
                     + "    " + student.getTotal_score());
             return student;

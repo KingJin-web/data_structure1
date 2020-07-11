@@ -10,7 +10,7 @@ public class Hash {
     //记录学生人数
     private int sumStudentNum = 0;
     //集合封装链表形成哈希表
-    private ArrayList<DoubleLinkList> doubleLinkLists = new ArrayList<DoubleLinkList>();
+    private final ArrayList<DoubleLinkList> doubleLinkLists = new ArrayList<DoubleLinkList>();
 
     //得到以姓为关键字的哈希值
     public String getHash(String name){
