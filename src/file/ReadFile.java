@@ -38,6 +38,7 @@ public class ReadFile {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         deleteTable();
+        //在导入前清空数据表。防止数据重叠。
         String line = null;
         String sql = "insert into db_student (sname, sid, english, history, math ,pe, data_structure,cdate,total_score) " +
                 "values(?,?,?,?,?,?,?,NOW(),?)";

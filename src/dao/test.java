@@ -17,8 +17,8 @@ public class test {
         }
         //输出全部成绩
 //        System.out.println("姓名   学号  英语   历史  高数   体育  数据结构 总分");
-//        ListSort L = new ListSort();
-//        L.addStudent("张三丰", "0006", 99, 85, 98, 36, 89);
+      ListSort L = new ListSort();
+      L.addStudent("张三丰", "0006", 99, 85, 98, 36, 89);
         // 插入学生成绩
         System.out.println("aaa");
         ListSort l = new ListSort();

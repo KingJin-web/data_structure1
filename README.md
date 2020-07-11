@@ -12,3 +12,7 @@ student类 学生类
 ### file包
 ReadFile类： 将文件数据读取
 SaveFile类： 保存数据到文件
+### Hash包
+哈希表
+### MySQL包
+mysql帮助

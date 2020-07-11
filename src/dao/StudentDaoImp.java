@@ -9,6 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
+/**
+ * @author 12613
+ */
 public class StudentDaoImp implements StudentDao {
 
 
@@ -249,7 +252,7 @@ public class StudentDaoImp implements StudentDao {
         }
     }
 
-    public int changeTotal(String sid) throws SQLException {
+    public void changeTotal(String sid) throws SQLException {
         StudentDaoImp studentDaoImp = new StudentDaoImp();
         try {
             Connection conn = openConnection();
@@ -258,7 +261,7 @@ public class StudentDaoImp implements StudentDao {
             ps.setDouble(1, studentDaoImp.returnTotal(sid));
             ps.setString(2, sid);
 
-            return ps.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("执行SQL语句失败!", e);
         } finally {
